@@ -1,0 +1,281 @@
+<!-- =========================
+     Dashboard Cards
+========================= -->
+<div class="container-fluid py-4">
+
+  <div class="row g-4">
+
+    <!-- Total Revenue -->
+    <div class="col-xl-3 col-lg-6 col-md-6">
+      <div class="card dashboard-card h-100">
+
+        <div class="card-body">
+
+          <div class="card-title">
+            Total Revenue (Jun)
+          </div>
+
+          <div class="card-value">
+            ${{ totalRevenue() }}
+          </div>
+
+          <div class="card-subtext">
+            8 completed sales
+          </div>
+
+          <div
+            class="card-trend"
+            [ngClass]="revenueTrend().isUp ? 'up' : 'down'">
+
+            {{ revenueTrend().isUp ? '+' : '-' }}
+            {{ revenueTrend().value }}%
+            vs last month
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Today's Revenue -->
+    <div class="col-xl-3 col-lg-6 col-md-6">
+      <div class="card dashboard-card h-100">
+
+        <div class="card-body">
+
+          <div class="card-title">
+            Today's Revenue
+          </div>
+
+          <div class="card-value">
+            ${{ todayRevenue() }}
+          </div>
+
+          <div class="card-subtext">
+            2 Transactions
+          </div>
+
+          <div
+            class="card-trend"
+            [ngClass]="todayTrend().isUp ? 'up' : 'down'">
+
+            {{ todayTrend().isUp ? '+' : '-' }}
+            {{ todayTrend().value }}%
+            vs yesterday
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Low Stock -->
+    <div class="col-xl-3 col-lg-6 col-md-6">
+      <div class="card dashboard-card h-100">
+
+        <div class="card-body">
+
+          <div class="card-title">
+            Low Stock Items
+          </div>
+
+          <div class="card-value">
+            {{ lowStock() }}
+          </div>
+
+          <div class="card-subtext">
+            Require Reorder
+          </div>
+
+          <div
+            class="card-trend"
+            [ngClass]="lowStockTrend().isUp ? 'down' : 'up'">
+
+            {{ lowStockTrend().value }}
+            Critical
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Products -->
+    <div class="col-xl-3 col-lg-6 col-md-6">
+      <div class="card dashboard-card h-100">
+
+        <div class="card-body">
+
+          <div class="card-title">
+            Active Products
+          </div>
+
+          <div class="card-value">
+            {{ activeProducts() }}
+          </div>
+
+          <div class="card-subtext">
+            In Inventory
+          </div>
+
+          <div
+            class="card-trend"
+            [ngClass]="productTrend().isUp ? 'up' : 'down'">
+
+            {{ productTrend().isUp ? '+' : '-' }}
+            {{ productTrend().value }}
+            Added this week
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =========================
+       Charts
+  ========================= -->
+
+  <div class="row g-4 mt-2">
+
+    <!-- Revenue Chart -->
+    <div class="col-xl-8 col-lg-7">
+
+      <div class="card full-card h-100">
+
+        <div class="card-body">
+
+          <h5 class="card-title">
+            Monthly Revenue
+          </h5>
+
+          <p class="card-subtext">
+            Monthly Revenue Performance - 2026
+          </p>
+
+          <div class="chart-container">
+
+            <canvas id="revenueChart"></canvas>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Top Products -->
+    <div class="col-xl-4 col-lg-5">
+
+      <div class="card full-card h-100">
+
+        <div class="card-body">
+
+          <h5 class="card-title">
+            Top Selling Products
+          </h5>
+
+          <p class="card-subtext">
+            Best Performing Products
+          </p>
+
+          <div class="chart-container">
+
+            <canvas id="topProductsChart"></canvas>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- =========================
+       Top Products Table
+  ========================= -->
+
+  <div class="row mt-4">
+
+    <div class="col-12">
+
+      <div class="card">
+
+        <div class="card-body">
+
+          <h5 class="card-title mb-4">
+
+            Top Selling Products
+
+          </h5>
+
+          <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+              <thead>
+
+                <tr>
+
+                  <th>Product</th>
+
+                  <th>Units Sold</th>
+
+                  <th>Revenue</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                @for(product of topProducts(); track product.name){
+
+                <tr>
+
+                  <td>
+
+                    {{ product.name }}
+
+                  </td>
+
+                  <td>
+
+                    {{ product.quantity }}
+
+                  </td>
+
+                  <td>
+
+                    ${{ product.revenue | number:'1.2-2' }}
+
+                  </td>
+
+                </tr>
+
+                }
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

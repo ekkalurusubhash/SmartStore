@@ -1,0 +1,370 @@
+$primary-color: #2563eb;
+$text-primary: #1a1a1a;
+$text-secondary: #666666;
+$border-color: #e0e0e0;
+$background: #f8f9fa;
+$white: #ffffff;
+$success-color: #22c55e;
+
+.analytics-container {
+  padding: 24px;
+}
+
+.analytics-header {
+  margin-bottom: 32px;
+
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 8px 0;
+  }
+
+  p {
+    font-size: 14px;
+    color: $text-secondary;
+    margin: 0;
+  }
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.analytics-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.chart-card {
+  background: $white;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0 0 20px 0;
+  }
+}
+
+.chart-placeholder {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trend-info {
+  width: 100%;
+
+  p {
+    text-align: center;
+    color: $text-secondary;
+    font-size: 14px;
+    margin: 0 0 16px 0;
+  }
+
+  .data-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: $background;
+      border-radius: 6px;
+      font-size: 13px;
+
+      .date {
+        color: $text-secondary;
+        font-weight: 500;
+      }
+
+      .amount {
+        color: $text-primary;
+        font-weight: 600;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.product-rankings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: $background;
+  border-radius: 6px;
+
+  .rank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    background: $primary-color;
+    color: $white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .product-info {
+    flex: 1;
+
+    .product-name {
+      font-weight: 600;
+      color: $text-primary;
+      margin-bottom: 4px;
+    }
+
+    .product-stats {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: $text-secondary;
+
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .progress-bar {
+    min-width: 100px;
+    height: 4px;
+    background: $border-color;
+    border-radius: 2px;
+    overflow: hidden;
+
+    .progress {
+      height: 100%;
+      background: $success-color;
+      transition: width 0.3s ease;
+    }
+  }
+}
+
+.category-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.category-item {
+  padding: 16px;
+  background: $background;
+  border-radius: 6px;
+
+  .category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+
+    .category-name {
+      font-weight: 600;
+      color: $text-primary;
+      font-size: 14px;
+    }
+
+    .category-count {
+      font-size: 12px;
+      color: $text-secondary;
+      background: $white;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+  }
+
+  .category-details {
+    margin-bottom: 12px;
+
+    .inventory-value {
+      display: block;
+      font-size: 13px;
+      color: $text-secondary;
+      font-weight: 500;
+    }
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: $border-color;
+    border-radius: 4px;
+    overflow: hidden;
+
+    .progress {
+      height: 100%;
+      background: linear-gradient(90deg, $primary-color, $success-color);
+      transition: width 0.3s ease;
+    }
+  }
+}
+
+.empty-message {
+  text-align: center;
+  padding: 40px;
+  color: $text-secondary;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ranking-item {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .progress-bar {
+      width: 100%;
+    }
+  }
+}
+/* ======================
+   TABLET (<= 768px)
+====================== */
+@media (max-width: 768px) {
+
+  .analytics-container {
+    padding: 16px;
+  }
+
+  /* Header */
+  .analytics-header {
+    h1 {
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
+
+  /* Grid → single column */
+  .analytics-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Chart card */
+  .chart-card {
+    padding: 16px;
+  }
+
+  /* Ranking layout fix */
+  .ranking-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+
+    .progress-bar {
+      width: 100%;
+    }
+
+    .product-stats {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  }
+
+  /* Category layout */
+  .category-item {
+    .category-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+  }
+}
+
+
+/* ======================
+   MOBILE (<= 480px)
+====================== */
+@media (max-width: 480px) {
+
+  /* Header */
+  .analytics-header {
+    h1 {
+      font-size: 20px;
+    }
+  }
+
+  /* Chart placeholder */
+  .chart-placeholder {
+    min-height: auto;
+  }
+
+  /* Trend list */
+  .trend-info .data-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+
+    .amount {
+      font-size: 13px;
+    }
+  }
+
+  /* Ranking item */
+  .ranking-item {
+    padding: 10px;
+
+    .rank {
+      min-width: 28px;
+      height: 28px;
+      font-size: 12px;
+    }
+
+    .product-name {
+      font-size: 13px;
+    }
+
+    .product-stats {
+      font-size: 11px;
+    }
+  }
+
+  /* Category */
+  .category-item {
+    padding: 12px;
+
+    .category-name {
+      font-size: 13px;
+    }
+
+    .inventory-value {
+      font-size: 12px;
+    }
+  }
+
+  /* Empty messages */
+  .empty-message {
+    padding: 20px;
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,129 @@
+<div class="employees-container">
+  <div class="employees-header">
+    <div class="header-content">
+      <h1>Employee Management</h1>
+      <p>Manage team members and staff</p>
+    </div>
+    @if (isAdmin()) {
+      <button class="btn-primary" (click)="toggleForm()">
+        {{ showForm() ? 'Cancel' : 'Add Employee' }}
+      </button>
+    }
+  </div>
+  @if (showForm() && isAdmin()) {
+    <div class="employee-form-card">
+      <h2>
+        {{ editingId() ? 'Edit Employee' : 'Add New Employee' }}
+      </h2>
+      <form
+        class="employee-form"
+        (ngSubmit)="saveEmployee()">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input
+            id="name"
+            type="text"
+            class="form-input"
+            name="name"
+            [ngModel]="formData().name"
+            (ngModelChange)="updateName($event)"
+            placeholder="Enter employee name"
+            required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            class="form-input"
+            name="email"
+            [ngModel]="formData().email"
+            (ngModelChange)="updateEmail($event)"
+            placeholder="Enter email address"
+            required />
+        </div>
+        <div class="form-group">
+          <label for="department">Department</label>
+          <input
+            id="department"
+            type="text"
+            class="form-input"
+            name="department"
+            [ngModel]="formData().department"
+            (ngModelChange)="updateDepartment($event)"
+            placeholder="e.g., Sales, Operations"
+            required />
+        </div>
+        <div class="form-group">
+          <label for="salary">Annual Salary ($)</label>
+          <input
+            id="salary"
+            type="number"
+            class="form-input"
+            name="salary"
+            [ngModel]="formData().salary"
+            (ngModelChange)="updateSalary(+$event)"
+            placeholder="Enter annual salary"
+            required />
+        </div>
+        <button
+          type="submit"
+          class="btn-submit"
+          [disabled]="!isFormValid()">
+          {{ editingId() ? 'Update' : 'Add' }} Employee
+        </button>
+      </form>
+    </div>
+  }
+  <div class="metric-card">
+    <div class="metric-label">Total Employees</div>
+    <div class="metric-value">{{ employeeCount() }}</div>
+  </div>
+  <div class="employees-section">
+    <h2>Team Members</h2>
+    @if (employees().length > 0) {
+      <table class="employees-table">
+
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Annual Salary</th>
+            @if (isAdmin()) {
+              <th>Actions</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (employee of employees(); track employee.id) {
+            <tr>
+              <td>{{ employee.name }}</td>
+              <td>{{ employee.email }}</td>
+              <td>{{ employee.department }}</td>
+              <td>${{ employee.salary | number:'1.0-0' }}</td>
+              @if (isAdmin()) {
+                <td class="actions-cell">
+                  <button
+                    class="btn-edit"
+                    (click)="editEmployee(employee.id)">
+                    Edit
+                  </button>
+                  <button
+                    class="btn-delete"
+                    (click)="deleteEmployee(employee.id)">
+                    Delete
+                  </button>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <p class="empty-message">
+        No employees found.
+      </p>
+    }
+  </div>
+</div>

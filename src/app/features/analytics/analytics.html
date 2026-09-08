@@ -1,0 +1,82 @@
+<div class="analytics-container">
+    <div class="analytics-header">
+        <h1>Analytics & Insights</h1>
+        <p>View sales trends, product performance, and business insights</p>
+    </div>
+
+    <div class="analytics-grid">
+        <div class="chart-card">
+            <h2>Monthly Sales Trend</h2>
+            @if (monthlySalesData().length > 0) {
+            <div class="chart-placeholder">
+                <div class="trend-info">
+                    <p>Sales data for this month</p>
+                    <ul class="data-list">
+                        @for (data of monthlySalesData(); track data.date) {
+                        <li>
+                            <span class="date">{{ data.date }}</span>
+                            <span class="amount">${{ data.amount | number: '1.2-2' }}</span>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            } @else {
+            <p class="empty-message">No sales data available yet.</p>
+            }
+        </div>
+
+        <div class="chart-card">
+            <h2>Top Selling Products</h2>
+            @if (topProducts().length > 0) {
+            <div class="product-rankings">
+                @for (product of topProducts(); track product.name; let i = $index) {
+                <div class="ranking-item">
+                    <div class="rank">{{ i + 1 }}</div>
+                    <div class="product-info">
+                        <div class="product-name">{{ product.name }}</div>
+                        <div class="product-stats">
+                            <span class="quantity">{{ product.quantity }} units</span>
+                            <span class="revenue">${{ product.revenue | number: '1.2-2' }}</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress"
+                            [style.width.%]="(product.revenue / (topProducts()[0].revenue || 1)) * 100"></div>
+                    </div>
+                </div>
+                }
+            </div>
+            } @else {
+            <p class="empty-message">No sales data available yet.</p>
+            }
+        </div>
+    </div>
+
+    <div class="analytics-section">
+        <div class="chart-card">
+            <h2>Product Category Distribution</h2>
+            @if (categoryStats().length > 0) {
+            <div class="category-stats">
+                @for (category of categoryStats(); track category.category) {
+                <div class="category-item">
+                    <div class="category-header">
+                        <span class="category-name">{{ category.category }}</span>
+                        <span class="category-count">{{ category.count }} products</span>
+                    </div>
+                    <div class="category-details">
+                        <span class="inventory-value">Inventory Value: ${{ category.value | number: '1.2-2' }}</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress"
+                            [style.width.%]="(category.value / (categoryStats()[0].value || 1)) * 100"></div>
+                    </div>
+                </div>
+                }
+            </div>
+            } @else {
+            <p class="empty-message">No product data available yet.</p>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,340 @@
+$primary-color: #2563eb;
+$primary-dark: #1e40af;
+$success-color: #22c55e;
+$danger-color: #ef4444;
+$text-primary: #1a1a1a;
+$text-secondary: #666666;
+$border-color: #e0e0e0;
+$background: #f8f9fa;
+$white: #ffffff;
+
+.employees-container {
+  padding: 24px;
+}
+
+.employees-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+
+  .header-content {
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: $text-primary;
+      margin: 0 0 8px 0;
+    }
+
+    p {
+      font-size: 14px;
+      color: $text-secondary;
+      margin: 0;
+    }
+  }
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  background: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: $primary-dark;
+    transform: translateY(-2px);
+  }
+}
+
+.employee-form-card {
+  background: $white;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    font-size: 18px;
+    color: $text-primary;
+    margin: 0 0 20px 0;
+  }
+}
+
+.employee-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+
+  button {
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: $text-primary;
+    text-transform: uppercase;
+  }
+
+  .form-input {
+    padding: 10px 12px;
+    border: 1px solid $border-color;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+  }
+}
+
+.btn-submit {
+  padding: 10px 24px;
+  background: $success-color;
+  color: $white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background: #16a34a;
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.metric-card {
+  background: $white;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  .metric-label {
+    font-size: 13px;
+    color: $text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .metric-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: $text-primary;
+  }
+}
+
+.employees-section {
+  background: $white;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    font-size: 18px;
+    color: $text-primary;
+    margin: 0 0 20px 0;
+  }
+}
+
+.employees-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background: $background;
+    border-bottom: 2px solid $border-color;
+
+    th {
+      text-align: left;
+      padding: 12px;
+      font-weight: 600;
+      color: $text-primary;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $border-color;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: $background;
+      }
+
+      td {
+        padding: 12px;
+        color: $text-secondary;
+        font-size: 14px;
+
+        &.actions-cell {
+          display: flex;
+          gap: 8px;
+        }
+      }
+    }
+  }
+}
+
+.btn-edit {
+  padding: 6px 12px;
+  background: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: $primary-dark;
+  }
+}
+
+.btn-delete {
+  padding: 6px 12px;
+  background: $danger-color;
+  color: $white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #dc2626;
+  }
+}
+
+.empty-message {
+  text-align: center;
+  padding: 40px;
+  color: $text-secondary;
+}
+/* ======================
+   TABLET (<= 768px)
+====================== */
+@media (max-width: 768px) {
+
+  .employees-container {
+    padding: 16px;
+  }
+
+  /* Header */
+  .employees-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    .btn-primary {
+      width: 100%;
+    }
+  }
+
+  /* Form */
+  .employee-form {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-submit {
+    width: 100%;
+  }
+
+  /* Metric */
+  .metric-card {
+    padding: 16px;
+
+    .metric-value {
+      font-size: 24px;
+    }
+  }
+
+  /* Table scroll fix */
+  .employees-section {
+    overflow-x: auto;
+  }
+
+  .employees-table {
+    min-width: 700px; /* prevents column squish */
+  }
+
+  /* Actions buttons */
+  .actions-cell {
+    flex-direction: column;
+
+    .btn-edit,
+    .btn-delete {
+      width: 100%;
+    }
+  }
+}
+
+
+/* ======================
+   MOBILE (<= 480px)
+====================== */
+@media (max-width: 480px) {
+
+  /* Header text */
+  .employees-header {
+    .header-content {
+      h1 {
+        font-size: 22px;
+      }
+
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+
+  /* Metric full width */
+  .metric-card {
+    .metric-value {
+      font-size: 22px;
+    }
+  }
+
+  /* Form card */
+  .employee-form-card {
+    padding: 16px;
+  }
+
+  /* Inputs */
+  .form-input {
+    font-size: 13px;
+  }
+}

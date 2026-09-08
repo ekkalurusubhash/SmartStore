@@ -1,0 +1,51 @@
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <h1>SmartStore</h1>
+            <p>Inventory & Sales Management System</p>
+        </div>
+
+        <form class="login-form" (ngSubmit)="handleLogin()">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input id="name" type="text" class="form-input" [(ngModel)]="name" name="name"
+                    placeholder="Enter your full name" required />
+
+                <small *ngIf="name() && !isNameValid()" style="color:red">
+                    Name must be at least 3 characters long
+                </small>
+
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" class="form-input" [(ngModel)]="email" name="email"
+                    placeholder="Enter your email" required />
+
+                <small *ngIf="email() && !isEmailValid()" style="color:red">
+                    Please enter a valid email address
+                </small>
+
+            </div>
+
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select id="role" class="form-input" [(ngModel)]="selectedRole" name="role" required>
+                    <option value="">Select a role</option>
+                    <option value="admin">Admin</option>
+                    <option value="sales">Salesperson</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-button" [disabled]="!isFormValid()">
+                Login
+            </button>
+        </form>
+
+        <div class="demo-info">
+            <p><strong>Demo Credentials:</strong></p>
+            <p>Admin: Any name + admin role</p>
+            <p>Sales: Any name + sales role</p>
+        </div>
+    </div>
+</div>

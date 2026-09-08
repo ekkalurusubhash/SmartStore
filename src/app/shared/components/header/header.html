@@ -1,0 +1,58 @@
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn me-2 d-none d-md-inline-flex" (click)="toggleCollapse()"
+            title="Toggle Sidebar">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    <div class="header-center">
+        <h1>SmartStore Dashboard</h1>
+    </div>
+    <div class="header-right">
+        <!-- Notifications -->
+        <div class="position-relative d-none d-md-block">
+            <button class="notification-btn" (click)="toggleNotifications()" [class.has-unread]="unreadCount() > 0"
+                title="Notifications">
+                <i class="fas fa-bell"></i>
+                @if (unreadCount() > 0) {
+                <span class="notification-badge">{{ unreadCount() }}</span>
+                }
+            </button>
+            @if (showNotifications) {
+            <div class="notification-panel">
+                <div class="notification-header">
+                    <h3>Notifications</h3>
+                    <button class="close-btn" (click)="toggleNotifications()">✕</button>
+                </div>
+                <div class="notification-list">
+                    @if (notifications().length > 0) {
+                    @for (notif of notifications(); track notif.id) {
+                    <div class="notification-item" [class]="notif.type" [class.unread]="!notif.read"
+                        (click)="markAsRead(notif.id)">
+                        <div class="notification-title">{{ notif.title }}</div>
+                        <div class="notification-message">{{ notif.message }}</div>
+                        <div class="notification-time">
+                            {{ notif.timestamp | date: 'short' }}
+                        </div>
+                    </div>
+                    }
+                    } @else {
+                    <div class="empty-notifications">No notifications</div>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+        <!-- User Info -->
+        @if (currentUser()) {
+        <div class="user-info d-none d-md-inline-flex">
+            <span class="user-name">{{ currentUser()!.name | titlecase}}</span>
+            <span class="user-role">{{ currentUser()!.role | uppercase }}</span>
+        </div>
+        }
+        <!-- Logout Button -->
+        <button class="btn btn-outline-danger" (click)="logout()" title="Logout">
+            <i class="fas fa-sign-out-alt"></i>
+        </button>
+    </div>
+</header>
