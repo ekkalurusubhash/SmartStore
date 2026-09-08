@@ -141,6 +141,7 @@ export class Inventory {
       });
       this.editingId.set(id);
       this.showForm.set(true);
+      this.scrollToTop();
     }, 800);
   }
 
@@ -226,6 +227,10 @@ export class Inventory {
     });
     this.editingId.set(null);
     this.showForm.set(false);
+  }
+
+  private scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // ===========================
