@@ -36,12 +36,12 @@ jobs:
         run: npm run build -- --base-href "/${{ github.event.repository.name }}/"
 
       - name: Preserve client-side routes
-        run: cp dist/SmartStore/index.html dist/SmartStore/404.html
+        run: cp dist/SmartStore/browser/index.html dist/SmartStore/browser/404.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/SmartStore
+          path: dist/SmartStore/browser
 
   deploy:
     environment:
